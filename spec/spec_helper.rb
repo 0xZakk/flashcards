@@ -89,3 +89,16 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 end
+
+require 'active_record'
+require 'pry'
+require 'pg'
+
+require_relative '../lib/card'
+require_relative '../lib/deck'
+require_relative '../db/connection'
+
+
+
+
+

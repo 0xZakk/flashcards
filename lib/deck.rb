@@ -1,13 +1,10 @@
 class Deck < ActiveRecord::Base
   has_many :cards, dependent: :destroy
+  validates :name, uniqueness: true
+  validates :name, presence: true
 
   def to_s
     return name
   end
-
-  # def name
-  #   formatted_name = @name.capitalize
-  #   return formatted_name
-  # end
 
 end
