@@ -4,7 +4,6 @@ DROP TABLE IF EXISTS decks;
 CREATE TABLE decks (
   id serial PRIMARY KEY,
   name varchar(50) NOT NULL,
-  score text
 );
 
 CREATE TABLE cards (

@@ -6,6 +6,11 @@ require_relative 'db/connection'
 require_relative 'lib/card'
 require_relative 'lib/deck'
 
+def get_user_input(prompt)
+  puts prompt
+  return gets.chomp
+end
+
 def under_construction
   puts "This section is under construction"
 end
@@ -24,27 +29,16 @@ end
 
 def build_deck
   deck_attr = {}
-  puts "What is the name of the new deck?"
-  deck_attr[:name] = gets.chomp 
+  deck_attr[:name] = get_user_input("What is the name of the new deck?") 
   deck_attr[:score] = 0
   return deck_attr
 end
 
-#
-# => Figure out how to set defaults in AR
-# => :score default = 0
-
 def build_card(deck_id)
   card_attr = {}
-  
   card_attr[:deck_id] = deck_id
-
-  puts "What should be on the front of the card?"
-  card_attr[:front] = gets.chomp
-
-  puts "What should be on the back of the card?"
-  card_attr[:back] = gets.chomp
-
+  card_attr[:front] = get_user_input("What should be on the front of the card?")
+  card_attr[:back] = get_user_input("What should be on the back of the card?")
   return card_attr
 end
 
@@ -72,8 +66,7 @@ end
 
 def play_deck(cards)
   cards.each do |card|
-    puts "Card Front: #{card.front}"
-    user_selection = gets.chomp.to_s
+    user_selection = get_user_input("Card Front: #{card.front}").to_s
     
     if user_selection == card.back
       puts "Correct!"
@@ -94,8 +87,7 @@ end
 
 def add_cards_to_deck(deck)
   loop do
-    puts "Create another card? [y/n]"
-    more_cards = gets.chomp
+    more_cards = get_user_input("Create another card? [y/n]")
     case more_cards
     when "y"
       card = build_card(deck.id)
@@ -111,14 +103,8 @@ def add_cards_to_deck(deck)
 end
 
 def edit_card(card)
-  puts "What should be the front?"
-  new_front = gets.chomp
-
-  puts "What should be the back?"
-  new_back = gets.chomp
-
-  card.front = new_front
-  card.back = new_back
+  card.front = get_user_input("What should be the front?")
+  card.back = get_user_input("What should be the back?")
   card.save  
 end
 
@@ -143,15 +129,3 @@ loop do
     break
   end
 end
-
-
-
-
-
-
-
-
-
-
-
-

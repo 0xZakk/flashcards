@@ -2,8 +2,8 @@ require_relative '../app'
 require_relative 'connection'
 
 decks = Deck.create([
-  {name: "Spanish Foods", score: 0},
-  {name: "Spanish Travel", score: 0}
+  {name: "Spanish Foods"},
+  {name: "Spanish Travel"}
   ])
 
 spanish_foods_deck = Deck.find_by(name: "Spanish Foods")
