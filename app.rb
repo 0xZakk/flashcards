@@ -90,8 +90,7 @@ def add_cards_to_deck(deck)
     more_cards = get_user_input("Create another card? [y/n]")
     case more_cards
     when "y"
-      card = build_card(deck.id)
-      Card.create(card)      
+      Card.create(build_card(deck.id))      
     when "n"
       break
     else
